@@ -1,17 +1,15 @@
-function allPathsSourceTarget(graph) {
-  const result = [];
-  const target = graph.length - 1;
-  dfs(graph, 0, [0]);
-  function dfs(graph, node, path) {
-    if (node === target) {
-      result.push([...path]);
-      return;
-    }
-    for (const neighbor of graph[node]) {
-      path.push(neighbor);
-      dfs(graph, neighbor, path);
-      path.pop();
+function countSubstrings(s) {
+  let count = 0;
+  for (let i = 0; i < s.length; i++) {
+    extendPalindrome(i, i);
+    extendPalindrome(i, i + 1);
+  }
+  return count;
+  function extendPalindrome(left, right) {
+    while (left >= 0 && right < s.length && s[left] === s[right]) {
+      count++;
+      left--;
+      right++;
     }
   }
-  return result;
 }
