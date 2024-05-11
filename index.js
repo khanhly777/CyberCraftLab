@@ -1,17 +1,14 @@
-function decodeString(s) {
-  const stack = [];
-  for (const char of s) {
-    if (char !== "]") stack.push(char);
-    else {
-      let str = "";
-      while (stack.length && stack[stack.length - 1] !== "[")
-        str = stack.pop() + str;
-      stack.pop();
-      let num = "";
-      while (stack.length && !isNaN(stack[stack.length - 1]))
-        num = stack.pop() + num;
-      stack.push(str.repeat(parseInt(num)));
+const selectionSort = (arr) => {
+  for (let i = 0; i < arr.length; i++) {
+    let minIndex = i;
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[j] < arr[minIndex]) {
+        minIndex = j;
+      }
+    }
+    if (minIndex !== i) {
+      [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]];
     }
   }
-  return stack.join("");
-}
+  return arr;
+};
