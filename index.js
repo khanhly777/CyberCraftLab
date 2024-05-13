@@ -1,9 +1,11 @@
-function isSubsequence(s, t) {
-  let i = 0;
-  let j = 0;
-  while (i < s.length && j < t.length) {
-    if (s[i] === t[j]) i++;
-    j++;
+function reverseList(head) {
+  let prev = null;
+  let curr = head;
+  while (curr) {
+    const next = curr.next;
+    curr.next = prev;
+    prev = curr;
+    curr = next;
   }
-  return i === s.length;
+  return prev;
 }
