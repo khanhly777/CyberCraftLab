@@ -1,17 +1,9 @@
-function pathSum(root, sum) {
-  if (!root) return [];
-  const result = [];
-  const path = [];
-  const traverse = (node, sum) => {
-    if (!node) return;
-    path.push(node.val);
-    if (!node.left && !node.right && sum === node.val) {
-      result.push([...path]);
-    }
-    traverse(node.left, sum - node.val);
-    traverse(node.right, sum - node.val);
-    path.pop();
-  };
-  traverse(root, sum);
-  return result;
+function groupAnagrams(strs) {
+  const map = new Map();
+  for (const str of strs) {
+    const sortedStr = str.split("").sort().join("");
+    if (!map.has(sortedStr)) map.set(sortedStr, []);
+    map.get(sortedStr).push(str);
+  }
+  return [...map.values()];
 }
